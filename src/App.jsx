@@ -8,8 +8,7 @@ import confetti from 'canvas-confetti'
 import { Board } from './components/Board'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/storage'
 
-function App() {
-
+function App () {
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
@@ -20,7 +19,6 @@ function App() {
   })
   const [winner, setWinner] = useState(null) // null: no winner yet - false: draw - true: winner
 
-
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
@@ -28,7 +26,6 @@ function App() {
 
     resetGameStorage()
   }
-
 
   const updateBoard = (index) => {
     // We don't update an already filled position
@@ -59,12 +56,11 @@ function App() {
     }
   }
 
-
   return (
     <main className='board'>
       <h1>Tic tac toe</h1>
       <button onClick={resetGame}>Empezar de Nuevo</button>
-      <Board board={board} updateBoard={updateBoard}></Board>
+      <Board board={board} updateBoard={updateBoard} />
       <section className='turn'>
         <Square isSelected={turn === TURNS.X}>
           {TURNS.X}
@@ -73,7 +69,7 @@ function App() {
           {TURNS.O}
         </Square>
       </section>
-      <WinnerModal winner={winner} resetGame={resetGame}></WinnerModal>
+      <WinnerModal winner={winner} resetGame={resetGame} />
 
     </main>
   )
